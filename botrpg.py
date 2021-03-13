@@ -1,13 +1,14 @@
-import keyboard, pyautogui, time, schedule
+import keyboard, pyautogui, time, schedule, playsound
 from PySimpleGUI import PySimpleGUI as sg
+from playsound import playsound
+
 
 def check():
-    
     while pyautogui.locateOnScreen("Capturar.png"):
-            playsound("a.mp3")
+        playsound("a.mp3")
 
 def hunt():
-    keyboard.write('rpg hunt t')
+    keyboard.write('rpg hunt')
     keyboard.press("enter")
     check()
 
@@ -55,10 +56,18 @@ layout = [
     [sg.Radio("Sim","Raid",True),sg.Radio("Não","Raid")],
     [sg.Text("Pets")],
     [sg.Radio("Sim","Pets",True),sg.Radio("Não","Pets")],
-    [sg.Button("Entrar")]
+    [sg.Button("Entrar")],
+    [sg.Text("Digite o comando de coleta")],
+    [sg.Input(key="comando")]
 ]
 #JANELA
 janela = sg.Window("Teste", layout)
+
+#DEF COMANDO
+def coleta():
+    keyboard.write(valores["comando"])
+    keyboard.press("enter")
+    check()
 #EVENTOS
 while True:
     eventos, valores = janela.read()
@@ -67,24 +76,30 @@ while True:
     if eventos == sg.WINDOW_CLOSED:
         break
     if eventos == "Entrar":
+        schedule.every(5).minutes.do(coleta)
+        
         if valores[0] == True:
             schedule.every(1).minutes.do(hunt)
+            
         if valores[2] == True:
             schedule.every(3590).seconds.do(heal)
             schedule.every(58).seconds.do(heal)
+            
         if valores[4] == True:
             schedule.every(1).hours.do(adv)
+            
         if valores[6] == True:
             schedule.every(2).hours.do(raid)
+            
         if valores[8] == True:
             schedule.every(240).minutes.do(pet_claim)
             schedule.every(241).minutes.do(pet_adv)
+            
         time.sleep(5)
         schedule.run_all(delay_seconds=3)
         while True:
             schedule.run_pending()
             time.sleep(1)
-            
             
             
             
