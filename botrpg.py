@@ -1,57 +1,53 @@
 import keyboard, pyautogui, time
-#time.sleep(5)
+from playsound import playsound
+time.sleep(5)
 
-pyautogui.click(410,816)
+
+
+
+
+
 def check():
-    while pyautogui.locateOnScreen("checkcoin.png"):
-            keyboard.write('fish')
-            keyboard.press("enter")
-            time.sleep(1)
-    while pyautogui.locateOnScreen("jailcheck.png"):
-        keyboard.write('rpg jail')
-        keyboard.press("enter")
-        time.sleep(1)
-        keyboard.write("protest")
-        keyboard.press("enter")
-        time.sleep(1)
-        if pyautogui.locateOnScreen("checkcoin.png", grayscale=True):
-            keyboard.write('fish')
-            keyboard.press("enter")
-            time.sleep(1)
-
-
+    while pyautogui.locateOnScreen("Capturar.png", region=(310,120,650,620)):
+            playsound("a.mp3")
+"""
 while True:
-    for i in range(5):
-        check()
-        keyboard.write('rpg hunt')
-        keyboard.press("enter")
-        time.sleep(10)
-        check()
-        keyboard.write('rpg buy life potion')
-        keyboard.press("enter")
-        time.sleep(10)
-        check()
+    keyboard.write('rpg craft epic log all')
+    keyboard.press("enter")
+    check()
+    keyboard.write('rpg dismantle epic log all')
+    keyboard.press("enter")
+    check()
+"""
+while True:
+    keyboard.write('rpg guild raid')
+    keyboard.press("enter")
+    check()
+    for x in range(2):
         keyboard.write('rpg heal')
         keyboard.press("enter")
-        time.sleep(10)
+        time.sleep(2)
+        keyboard.write('rpg adventure')
+        keyboard.press("enter")
         check()
-        time.sleep(32)
-        check()
-
-
-    '''
-    keyboard.write('rpg buy life potion')
-    keyboard.press("enter")
-    check()
-
-    keyboard.write('rpg heal')
-    keyboard.press("enter")
-    check()
-    '''
-    
-    keyboard.write('rpg fish')
-    keyboard.press("enter")
-    time.sleep(1)
-    check()
-
-
+        time.sleep(2)
+        #keyboard.write('rpg heal')
+        #keyboard.press("enter")
+        #time.sleep(2)
+        for a in range(12):
+            keyboard.write('rpg chainsaw')
+            keyboard.press("enter")
+            time.sleep(3)
+            #keyboard.write('rpg heal')
+            #keyboard.press("enter")
+            check()
+            for i in range(5):
+                check()
+                keyboard.write('rpg hunt t')
+                keyboard.press("enter")
+                check()
+                #keyboard.write('rpg heal')
+                #keyboard.press("enter")
+                #check()
+                time.sleep(20)
+                time.sleep(39)
