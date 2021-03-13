@@ -2,11 +2,13 @@ import keyboard, pyautogui, time, schedule, playsound
 from PySimpleGUI import PySimpleGUI as sg
 from playsound import playsound
 
+# Checagem de aviso afk
 
 def check():
     while pyautogui.locateOnScreen("Capturar.png"):
         playsound("a.mp3")
 
+# Comandos do Bot
 def hunt():
     keyboard.write('rpg hunt')
     keyboard.press("enter")
@@ -44,7 +46,7 @@ def pet_adv():
 
 #INTERFACE
 #LAYOUT
-sg.theme("Reddit")
+sg.theme("Black")
 layout = [
     [sg.Text("Hunt")],
     [sg.Radio("Sim", "hunt", True),sg.Radio("Não", "hunt")],
@@ -56,26 +58,26 @@ layout = [
     [sg.Radio("Sim","Raid",True),sg.Radio("Não","Raid")],
     [sg.Text("Pets")],
     [sg.Radio("Sim","Pets",True),sg.Radio("Não","Pets")],
-    [sg.Button("Entrar")],
     [sg.Text("Digite o comando de coleta")],
-    [sg.Input(key="comando")]
+    [sg.Input(key="comando")],
+    [sg.Button("Iniciar")]
 ]
+
 #JANELA
-janela = sg.Window("Teste", layout)
+janela = sg.Window("Bot RPG", layout, icon="favicon.ico",resizable=True,grab_anywhere=True)
 
 #DEF COMANDO
 def coleta():
     keyboard.write(valores["comando"])
     keyboard.press("enter")
     check()
+    
 #EVENTOS
 while True:
     eventos, valores = janela.read()
-    
-    
     if eventos == sg.WINDOW_CLOSED:
         break
-    if eventos == "Entrar":
+    if eventos == "Iniciar":
         schedule.every(5).minutes.do(coleta)
         
         if valores[0] == True:
@@ -97,18 +99,8 @@ while True:
             
         time.sleep(5)
         schedule.run_all(delay_seconds=3)
-        while True:
+        while eventos == "Iniciar":
             schedule.run_pending()
             time.sleep(1)
-            
-            
-            
-#schedule.every(1).minutes.do(hunt)
-#schedule.every(3590).seconds.do(heal)
-#schedule.every(1).hours.do(adv)
-#schedule.every(2).hours.do(raid)
-#schedule.every(240).minutes.do(pet_claim)
-#schedule.every(241).minutes.do(pet_adv)
-
 
 
